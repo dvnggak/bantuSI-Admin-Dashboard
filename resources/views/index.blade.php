@@ -9,7 +9,7 @@
 
 <body>
     <div class="container">
-        <table>
+        <table border="1">
             <tr>
                 <td>Nama</td>
                 <td>Email</td>
