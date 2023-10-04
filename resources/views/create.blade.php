@@ -39,21 +39,21 @@
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                         @error('email')
-                                        <div class="form-control is-invalid">{{ $message }}</div>
+                                        <p class="text-danger">{{ $message }}</p> 
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name</label>
                                         <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Enter name">
-                                        @error('email')
-                                        <div class="form-control is-invalid">{{ $message }}</div>
+                                        @error('name')
+                                        <p class="text-danger">{{ $message }}</p> 
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
                                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                        @error('email')
-                                        <div class="form-control is-invalid">{{ $message }}</div>
+                                        @error('password')
+                                        <p class="text-danger">{{ $message }}</p> 
                                         @enderror
                                     </div>
                                 </div>

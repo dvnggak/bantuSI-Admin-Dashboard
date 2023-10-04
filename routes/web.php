@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, "dashboard"]);
+Route::get('/login', [LoginController::class, "login"])->name('login');
+Route::post('/login-process', [LoginController::class, "login_process"])->name('login-process');
+
+// Protected Route
+Route::get('/dashboard', [HomeController::class, "dashboard"])->name('dashboard');
+
+// User Route
 Route::get('/user', [HomeController::class, "index"])->name('user.index');
 Route::get('/create', [HomeController::class, "create"])->name('user.create');
 Route::get('/edit/{id}', [HomeController::class, "edit"])->name('user.edit');
