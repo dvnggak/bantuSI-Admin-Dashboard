@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, "login"])->name('login');
 Route::post('/login-process', [LoginController::class, "login_process"])->name('login-process');
 Route::get('/logout', [LogoutController::class, "logout"])->name('logout');
+Route::get('/register', [HomeController::class, "register"])->name('register');
 
 // Protected Route
 
