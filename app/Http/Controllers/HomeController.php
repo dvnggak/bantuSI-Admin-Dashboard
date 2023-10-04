@@ -56,14 +56,14 @@ class HomeController extends Controller
 
         User::where('id', $request->id)->update($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.index');
     }
 
     public function delete(Request $request, $id)
     {
         User::where('id', $id)->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.index');
     }
 
     public function store(Request $request)
@@ -88,6 +88,6 @@ class HomeController extends Controller
             'password' => \bcrypt($request->password),
         ]);
 
-        return redirect()->route('user.index');
+        return redirect()->route('admin.index');
     }
 }
