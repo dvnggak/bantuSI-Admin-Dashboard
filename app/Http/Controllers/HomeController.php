@@ -26,6 +26,39 @@ class HomeController extends Controller
         return view('create');
     }
 
+    public function edit(Request $request, $id)
+    {
+        $data = User::find($id);
+
+        return view('edit', compact('data'));
+    }
+
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:255',
+            'email' => 'required|email|unique:users,email,' . $request->id,
+            'password' => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        if ($request->password) {
+            $data['password'] = \bcrypt($request->password);
+        }
+
+        User::where('id', $request->id)->update($data);
+
+        return redirect()->route('user.index');
+    }
+
     public function store(Request $request)
     {
 
