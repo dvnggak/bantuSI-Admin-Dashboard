@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -70,6 +71,7 @@ class HomeController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|min:3|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:255',
@@ -82,9 +84,16 @@ class HomeController extends Controller
                 ->withInput();
         }
 
+        $image = $request->file('image');
+        $fileName = date('Y-m-d') . $image->getClientOriginalName();
+        $path = 'image-user/' . $fileName;
+
+        Storage::disk('public')->put($path, file_get_contents($image));
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'image' => $fileName,
             'password' => \bcrypt($request->password),
         ]);
 
