@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css')}}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -222,7 +222,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Users
                                     <!-- <span class="right badge badge-danger">New</span> -->
@@ -231,7 +231,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('logout')}}" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Logout
                                     <!-- <span class="right badge badge-danger">New</span> -->
