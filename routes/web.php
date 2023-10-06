@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -36,4 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::put('/update/{id}', [HomeController::class, "update"])->name('user.update');
     Route::delete('/delete/{id}', [HomeController::class, "delete"])->name('user.delete');
     Route::post('/store', [HomeController::class, "store"])->name('user.store');
+
+    // Lection Route
+    Route::get('/subject/index', [LectionControllers::class, "index"])->name('subject.index');
 });
