@@ -120,4 +120,11 @@ class LectionControllers extends Controller
 
         return redirect()->route('admin.subject.index')->with('success', 'Data berhasil diubah');
     }
+
+    public function delete($id)
+    {
+        Subjects::where('id', $id)->delete();
+
+        return redirect()->route('admin.subject.index')->with('success', 'Data berhasil dihapus');
+    }
 }

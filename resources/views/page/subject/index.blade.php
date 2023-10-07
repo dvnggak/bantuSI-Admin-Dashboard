@@ -91,7 +91,7 @@
                                                         <p>Kamu yakin inging menghapus data Mata Kuliah <b>{{$d->subject_name}}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
-                                                        <form action="" method="post">
+                                                        <form action="{{route('admin.subject.delete', ['id' => $d->id])}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

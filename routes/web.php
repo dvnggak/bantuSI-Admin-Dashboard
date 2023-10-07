@@ -44,4 +44,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::post('/subject/store', [LectionControllers::class, "store"])->name('subject.store');
     Route::get('/subject/edit/{id}', [LectionControllers::class, "edit"])->name('subject.edit');
     Route::put('/subject/update/{id}', [LectionControllers::class, "update"])->name('subject.update');
+    Route::delete('/subject/delete/{id}', [LectionControllers::class, "delete"])->name('subject.delete');
 });
