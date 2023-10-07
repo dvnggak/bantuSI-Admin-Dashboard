@@ -41,4 +41,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     // Lection Route
     Route::get('/subject/index', [LectionControllers::class, "index"])->name('subject.index');
     Route::get('/subject/create', [LectionControllers::class, "create"])->name('subject.create');
+    Route::post('/subject/store', [LectionControllers::class, "store"])->name('subject.store');
 });

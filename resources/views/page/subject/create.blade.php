@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.subject.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-- left column -->
@@ -53,25 +53,26 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputSubjectType">Tipe Kelas</label>
-                                                <select class="form-control" name="subject-type" id="exampleInputSubjectType">
+                                                <select require class="form-control" name="subject-type" id="exampleInputSubjectType">
+                                                    <option value="" selected></option>
                                                     <option>Kelas Reguler</option>
                                                     <option>Kelas Karyawan</option>
                                                 </select>
-                                                @error('image')
+                                                @error('subject-type')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputSubjectCredit">SKS</label>
                                                 <input type="number" name="subject-credit" class="form-control" id="exampleInputSubjectCredit" placeholder="Masukan SKS">
-                                                @error('password')
+                                                @error('subject-credit')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputSubjectLecturer">Nama Dosen</label>
                                                 <input type="text" name="subject-lecturer" class="form-control" id="exampleInputSubjectLecturer" placeholder="Masukan Nama Dosen">
-                                                @error('password')
+                                                @error('subject-lecturer')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -80,6 +81,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputSubjectDay">Hari</label>
                                                 <select class="form-control" name="subject-day" id="exampleInputSubjectDay">
+                                                    <option value="" selected></option>
                                                     <option>Senin</option>
                                                     <option>Selasa</option>
                                                     <option>Rabu</option>
@@ -87,7 +89,7 @@
                                                     <option>Jumat</option>
                                                     <option>Sabtu</option>
                                                 </select>
-                                                @error('password')
+                                                @error('subject-day')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -97,8 +99,11 @@
                                                     <label>Time picker:</label>
 
                                                     <div class="input-group date" id="timepicker" data-target-input="nearest">
-                                                        <input type="time" class="form-control datetimepicker-input" />
+                                                        <input type="time" name="subject-time" class="form-control datetimepicker-input" />
                                                     </div>
+                                                    @error('subject-time')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
                                                     <!-- /.input group -->
                                                 </div>
                                                 <!-- /.form group -->
@@ -113,7 +118,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputSubjectEnrollmentLink">Link V-class</label>
                                                 <input type="text" name="subject-enrollment-link" class="form-control" id="exampleInputSubjectEnrollmentLink" placeholder="Masukan Link V-class">
-                                                @error('subject-enrollment-code')
+                                                @error('subject-enrollment-link')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
