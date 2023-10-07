@@ -69,7 +69,7 @@ class LectionControllers extends Controller
 
         Subjects::create($data);
 
-        return redirect()->route('admin.subject.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.subject.index')->with('success', 'Mata Kuliah baru berhasil ditambahkan');
     }
 
     public function edit($id)
@@ -118,13 +118,13 @@ class LectionControllers extends Controller
 
         Subjects::where('id', $id)->update($data);
 
-        return redirect()->route('admin.subject.index')->with('success', 'Data berhasil diubah');
+        return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil diubah');
     }
 
     public function delete($id)
     {
         Subjects::where('id', $id)->delete();
 
-        return redirect()->route('admin.subject.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil dihapus');
     }
 }
