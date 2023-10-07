@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
@@ -36,4 +37,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::put('/update/{id}', [HomeController::class, "update"])->name('user.update');
     Route::delete('/delete/{id}', [HomeController::class, "delete"])->name('user.delete');
     Route::post('/store', [HomeController::class, "store"])->name('user.store');
+
+    // Lection/Subjects Route
+    Route::get('/subject/index', [LectionControllers::class, "index"])->name('subject.index');
+    Route::get('/subject/create', [LectionControllers::class, "create"])->name('subject.create');
+    Route::post('/subject/store', [LectionControllers::class, "store"])->name('subject.store');
+    Route::get('/subject/edit/{id}', [LectionControllers::class, "edit"])->name('subject.edit');
+    Route::put('/subject/update/{id}', [LectionControllers::class, "update"])->name('subject.update');
+    Route::delete('/subject/delete/{id}', [LectionControllers::class, "delete"])->name('subject.delete');
 });

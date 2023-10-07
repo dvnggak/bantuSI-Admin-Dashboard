@@ -216,7 +216,6 @@
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Dashboard
-                                    <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
                             </a>
                         </li>
@@ -225,16 +224,43 @@
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Users
-                                    <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Perkuliahan
+                                </p>
+                                <i class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Kerja Praktek</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../../index2.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Skripsi</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('admin.subject.index')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Mata Kuliah</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('logout')}}" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Logout
-                                    <!-- <span class="right badge badge-danger">New</span> -->
                                 </p>
                             </a>
                         </li>
@@ -298,6 +324,26 @@
     <script src="{{ asset('lte/dist/js/demo.js')}}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{session("error")}}',
+        })
+    </script>
+    @endif
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success...',
+            text: '{{session("success")}}',
+        })
+    </script>
+    @endif
 </body>
 
 </html>
