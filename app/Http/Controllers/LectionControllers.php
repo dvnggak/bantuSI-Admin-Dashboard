@@ -21,4 +21,9 @@ class LectionControllers extends Controller
 
         return view('page.subject.index', compact('data', 'request'));
     }
+
+    public function create()
+    {
+        return view('page.subject.create');
+    }
 }

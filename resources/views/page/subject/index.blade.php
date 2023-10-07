@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="" class="btn btn-primary mb-3">Tambah Mata Kuliah</a>
+                            <a href="{{route('admin.subject.create')}}" class="btn btn-primary mb-3">Tambah Mata Kuliah</a>
 
                             <div class="card-tools">
                                 <form action="{{route('admin.subject.index')}}" method="get">
