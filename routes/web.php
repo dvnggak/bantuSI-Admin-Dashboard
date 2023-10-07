@@ -42,4 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/subject/index', [LectionControllers::class, "index"])->name('subject.index');
     Route::get('/subject/create', [LectionControllers::class, "create"])->name('subject.create');
     Route::post('/subject/store', [LectionControllers::class, "store"])->name('subject.store');
+    Route::get('/subject/edit/{id}', [LectionControllers::class, "edit"])->name('subject.edit');
+    Route::put('/subject/update/{id}', [LectionControllers::class, "update"])->name('subject.update');
 });

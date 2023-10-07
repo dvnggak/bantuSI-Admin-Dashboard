@@ -75,10 +75,8 @@
                                         <td>{{$d->subject_enrollment_code}}</td>
                                         <td>{{$d->subject_group_link}}</td>
                                         <td>
-                                            <a href="">Edit</a>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete{{$d->id}}">
-                                                Delete
-                                            </button>
+                                            <a href="{{route('admin.subject.edit', ['id' => $d->id])}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                            <a data-toggle="modal" data-target="#modal-delete{{$d->id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td>
                                         <div class="modal fade" id="modal-delete{{$d->id}}">
                                             <div class="modal-dialog">
