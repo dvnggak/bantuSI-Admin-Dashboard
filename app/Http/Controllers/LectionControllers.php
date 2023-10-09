@@ -181,4 +181,48 @@ class LectionControllers extends Controller
 
         return redirect()->route('admin.skripsi.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
     }
+
+    public function skripsi_syarat_edit($id)
+    {
+        $data = Skripsi_Syarat::find($id);
+
+        return view('page.skripsi.syarat.edit', compact('data'));
+    }
+
+    public function skripsi_syarat_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'min:3|max:255',
+            'description' => 'min:3|max:255',
+            'file' => 'mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('desc');
+
+        $file = $request->file('file');
+        if ($file) {
+            $file_name = time() . "_" . $file->getClientOriginalName();
+            $file->move('uploads/skripsi/syarat', $file_name);
+            $data['file'] = $file_name;
+        }
+
+        Skripsi_Syarat::where('id', $id)->update($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil diubah');
+    }
+
+    public function skripsi_syarat_delete($id)
+    {
+        Skripsi_Syarat::where('id', $id)->delete();
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
+    }
 }

@@ -51,4 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     //Lection/Skripsi/Syarat Route
     Route::get('skripsi/syarat/create', [LectionControllers::class, "skripsi_syarat_create"])->name('skripsi.syarat.create');
     Route::post('skripsi/syarat/store', [LectionControllers::class, "skripsi_syarat_store"])->name('skripsi.syarat.store');
+    Route::get('skripsi/syarat/edit/{id}', [LectionControllers::class, "skripsi_syarat_edit"])->name('skripsi.syarat.edit');
+    Route::put('skripsi/syarat/update/{id}', [LectionControllers::class, "skripsi_syarat_update"])->name('skripsi.syarat.update');
+    Route::delete('skripsi/syarat/delete/{id}', [LectionControllers::class, "skripsi_syarat_delete"])->name('skripsi.syarat.delete');
 });

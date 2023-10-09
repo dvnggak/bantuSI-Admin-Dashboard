@@ -57,8 +57,8 @@
                                         <td>{{$syarats->description}}</td>
                                         <td>{{$syarats->file}}</td>
                                         <td class="float-sm-right">
-                                            <a href="" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i> Edit</a>
-                                            <a data-toggle="modal" data-target="" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                            <a href="{{route('admin.skripsi.syarat.edit', ['id' => $syarats->id])}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                            <a data-toggle="modal" data-target="#modal-delete{{$syarats->id}}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td>
                                         <div class="modal fade" id="modal-delete{{$syarats->id}}">
                                             <div class="modal-dialog">
@@ -70,10 +70,10 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Kamu yakin inging menghapus data Mata Kuliah <b>{{$syarats->subject_name}}</b>?&hellip;</p>
+                                                        <p>Kamu yakin ingin menghapus data Mata Kuliah <b>{{$syarats->title}}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
-                                                        <form action="" method="post">
+                                                        <form action="{{route('admin.skripsi.syarat.delete', ['id' => $syarats->id])}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
