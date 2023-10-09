@@ -99,7 +99,7 @@
                                     <h3 class="card-title mt-2">Panduan</h3>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a href="" class="btn btn-primary float-sm-right">Tambah Data</a>
+                                    <a href="{{route('admin.skripsi.panduan.create')}}" class="btn btn-primary float-sm-right">Tambah Data</a>
                                 </div>
                             </div>
                         </div>
@@ -123,8 +123,8 @@
                                         <td>{{$panduans->description}}</td>
                                         <td>{{$panduans->file}}</td>
                                         <td class="float-sm-right">
-                                            <a href="" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i> Edit</a>
-                                            <a data-toggle="modal" data-target="" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                            <a href="{{route('admin.skripsi.panduan.edit', ['id' => $panduans->id])}}" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                            <a data-toggle="modal" data-target="#modal-delete{{$panduans->id}}" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td>
                                         <div class="modal fade" id="modal-delete{{$panduans->id}}">
                                             <div class="modal-dialog">
@@ -136,10 +136,10 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Kamu yakin inging menghapus data Mata Kuliah <b>{{$panduans->subject_name}}</b>?&hellip;</p>
+                                                        <p>Kamu yakin ingin menghapus data Mata Kuliah <b>{{$panduans->title}}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
-                                                        <form action="" method="post">
+                                                        <form action="{{route('admin.skripsi.panduan.delete', ['id' => $panduans->id])}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

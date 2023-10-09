@@ -169,7 +169,7 @@ class LectionControllers extends Controller
         }
 
         $data['title'] = $request->input('title');
-        $data['desc'] = $request->input('desc');
+        $data['description'] = $request->input('desc');
 
         $file = $request->file('file');
         $file_name = time() . "_" . $file->getClientOriginalName();
@@ -224,5 +224,84 @@ class LectionControllers extends Controller
         Skripsi_Syarat::where('id', $id)->delete();
 
         return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
+    }
+
+    //Lection/Skripsi/Panduan Controller
+    public function skripsi_panduan_create()
+    {
+        return view('page.skripsi.panduan.create');
+    }
+
+    public function skripsi_panduan_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'file' => 'required|mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('desc');
+
+        $file = $request->file('file');
+        $file_name = time() . "_" . $file->getClientOriginalName();
+        $file->move('uploads/skripsi/panduan', $file_name);
+
+        $data['file'] = $file_name;
+
+        Skripsi_Panduan::create($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Panduan Skripsi baru berhasil ditambahkan');
+    }
+
+    public function skripsi_panduan_edit($id)
+    {
+        $data = Skripsi_Panduan::find($id);
+
+        return view('page.skripsi.panduan.edit', compact('data'));
+    }
+
+    public function skripsi_panduan_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'min:3|max:255',
+            'description' => 'min:3|max:255',
+            'file' => 'mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('desc');
+
+        $file = $request->file('file');
+        if ($file) {
+            $file_name = time() . "_" . $file->getClientOriginalName();
+            $file->move('uploads/skripsi/panduan', $file_name);
+            $data['file'] = $file_name;
+        }
+
+        Skripsi_Panduan::where('id', $id)->update($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data Panduan Skripsi berhasil diubah');
+    }
+
+    public function skripsi_panduan_delete($id)
+    {
+        Skripsi_Panduan::where('id', $id)->delete();
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data Panduan Skripsi berhasil dihapus');
     }
 }
