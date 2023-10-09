@@ -48,4 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 
     // Lection/Skripsi Route
     Route::get('/skripsi/index', [LectionControllers::class, "skripsi_index"])->name('skripsi.index');
+    //Lection/Skripsi/Syarat Route
+    Route::get('skripsi/syarat/create', [LectionControllers::class, "skripsi_syarat_create"])->name('skripsi.syarat.create');
+    Route::post('skripsi/syarat/store', [LectionControllers::class, "skripsi_syarat_store"])->name('skripsi.syarat.store');
 });

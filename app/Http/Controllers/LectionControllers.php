@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skripsi_File;
+use App\Models\Skripsi_Panduan;
+use App\Models\Skripsi_Pengumuman;
+use App\Models\Skripsi_Syarat;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -130,7 +134,51 @@ class LectionControllers extends Controller
 
     public function skripsi_index()
     {
+        $skripsi_syarat = new Skripsi_Syarat;
+        $skripsi_panduan = new Skripsi_Panduan;
+        $skripsi_pengumuman = new Skripsi_Pengumuman();
+        $skripsi_file = new Skripsi_File;
 
-        return view('page.skripsi.index');
+        $skripsi_syarat = $skripsi_syarat->get();
+        $skripsi_panduan = $skripsi_panduan->get();
+        $skripsi_pengumuman = $skripsi_pengumuman->get();
+        $skripsi_file = $skripsi_file->get();
+
+        return view('page.skripsi.index', compact('skripsi_syarat', 'skripsi_panduan', 'skripsi_pengumuman', 'skripsi_file'));
+    }
+
+    //Lection/Skripsi/Syarat Controller
+    public function skripsi_syarat_create()
+    {
+        return view('page.skripsi.syarat.create');
+    }
+
+    public function skripsi_syarat_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'file' => 'required|mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+
+        $file = $request->file('file');
+        $file_name = time() . "_" . $file->getClientOriginalName();
+        $file->move('uploads/skripsi/syarat', $file_name);
+
+        $data['file'] = $file_name;
+
+        Skripsi_Syarat::create($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
     }
 }
