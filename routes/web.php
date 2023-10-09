@@ -39,10 +39,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::post('/store', [HomeController::class, "store"])->name('user.store');
 
     // Lection/Subjects Route
-    Route::get('/subject/index', [LectionControllers::class, "index"])->name('subject.index');
-    Route::get('/subject/create', [LectionControllers::class, "create"])->name('subject.create');
-    Route::post('/subject/store', [LectionControllers::class, "store"])->name('subject.store');
-    Route::get('/subject/edit/{id}', [LectionControllers::class, "edit"])->name('subject.edit');
-    Route::put('/subject/update/{id}', [LectionControllers::class, "update"])->name('subject.update');
-    Route::delete('/subject/delete/{id}', [LectionControllers::class, "delete"])->name('subject.delete');
+    Route::get('/subject/index', [LectionControllers::class, "subjectIndex"])->name('subject.index');
+    Route::get('/subject/create', [LectionControllers::class, "subjectCreate"])->name('subject.create');
+    Route::post('/subject/store', [LectionControllers::class, "subjectStore"])->name('subject.store');
+    Route::get('/subject/edit/{id}', [LectionControllers::class, "subjectEdit"])->name('subject.edit');
+    Route::put('/subject/update/{id}', [LectionControllers::class, "subjectUpdate"])->name('subject.update');
+    Route::delete('/subject/delete/{id}', [LectionControllers::class, "subjectDelete"])->name('subject.delete');
+
+    // Lection/Skripsi Route
+    Route::get('/skripsi/index', [LectionControllers::class, "skripsi_index"])->name('skripsi.index');
 });

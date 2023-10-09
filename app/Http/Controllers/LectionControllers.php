@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LectionControllers extends Controller
 {
-    public function index(Request $request)
+    public function subjectIndex(Request $request)
     {
         $data = new Subjects;
 
@@ -23,12 +23,12 @@ class LectionControllers extends Controller
         return view('page.subject.index', compact('data', 'request'));
     }
 
-    public function create()
+    public function subjectCreate()
     {
         return view('page.subject.create');
     }
 
-    public function store(Request $request)
+    public function subjectStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'subject-code' => 'required|min:1|max:255',
@@ -72,14 +72,14 @@ class LectionControllers extends Controller
         return redirect()->route('admin.subject.index')->with('success', 'Mata Kuliah baru berhasil ditambahkan');
     }
 
-    public function edit($id)
+    public function subjectEdit($id)
     {
         $data = Subjects::find($id);
 
         return view('page.subject.edit', compact('data'));
     }
 
-    public function update(Request $request, $id)
+    public function subjectUpdate(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'subject-code' => 'required|min:1|max:255',
@@ -121,10 +121,16 @@ class LectionControllers extends Controller
         return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil diubah');
     }
 
-    public function delete($id)
+    public function subjectDelete($id)
     {
         Subjects::where('id', $id)->delete();
 
         return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil dihapus');
+    }
+
+    public function skripsi_index()
+    {
+
+        return view('page.skripsi.index');
     }
 }
