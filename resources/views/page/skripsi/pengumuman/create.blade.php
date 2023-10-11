@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Panduan Skripsi</h1>
+                    <h1 class="m-0">Pengumuman Skripsi</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Tambah Panduan Skripsi</li>
+                        <li class="breadcrumb-item active">Tambah Pengumuman Skripsi</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('admin.skripsi.panduan.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.skripsi.pengumuman.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-- left column -->
@@ -29,7 +29,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Form Tambah Panduan Skripsi</h3>
+                                <h3 class="card-title">Form Tambah Pengumuman Skripsi</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -39,7 +39,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="exampleInputTitle">Judul</label>
-                                                <input type="text" name="title" class="form-control" id="exampleInputSubjectCode" placeholder="Masukan Judul Panduan Skripsi">
+                                                <input type="text" name="title" class="form-control" id="exampleInputSubjectCode" placeholder="Masukan Judul Pengumuman Skripsi">
                                                 @error('title')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror

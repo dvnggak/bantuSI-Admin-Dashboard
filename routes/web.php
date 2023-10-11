@@ -60,4 +60,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('skripsi/panduan/edit/{id}', [LectionControllers::class, "skripsi_panduan_edit"])->name('skripsi.panduan.edit');
     Route::put('skripsi/panduan/update/{id}', [LectionControllers::class, "skripsi_panduan_update"])->name('skripsi.panduan.update');
     Route::delete('skripsi/panduan/delete/{id}', [LectionControllers::class, "skripsi_panduan_delete"])->name('skripsi.panduan.delete');
+    //Lection/Skripsi/Pengumuman Route
+    Route::get('skripsi/pengumuman/create', [LectionControllers::class, "skripsi_pengumuman_create"])->name('skripsi.pengumuman.create');
+    Route::post('skripsi/pengumuman/store', [LectionControllers::class, "skripsi_pengumuman_store"])->name('skripsi.pengumuman.store');
+    Route::get('skripsi/pengumuman/edit/{id}', [LectionControllers::class, "skripsi_pengumuman_edit"])->name('skripsi.pengumuman.edit');
+    Route::put('skripsi/pengumuman/update/{id}', [LectionControllers::class, "skripsi_pengumuman_update"])->name('skripsi.pengumuman.update');
+    Route::delete('skripsi/pengumuman/delete/{id}', [LectionControllers::class, "skripsi_pengumuman_delete"])->name('skripsi.pengumuman.delete');
 });

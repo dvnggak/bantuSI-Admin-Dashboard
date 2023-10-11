@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Panduan Skripsi</h1>
+                    <h1 class="m-0">Pengumuman Skripsi</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Tambah Panduan Skripsi</li>
+                        <li class="breadcrumb-item active">Edit Pengumuman Skripsi</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,15 +21,16 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('admin.skripsi.panduan.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.skripsi.pengumuman.update', ['id'=> $data->id])}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-12">
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Form Tambah Panduan Skripsi</h3>
+                                <h3 class="card-title">Form Edit Pengumuman Skripsi</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -39,21 +40,22 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="exampleInputTitle">Judul</label>
-                                                <input type="text" name="title" class="form-control" id="exampleInputSubjectCode" placeholder="Masukan Judul Panduan Skripsi">
+                                                <input value="{{$data -> title}}" type="text" name="title" class="form-control" id="exampleInputSubjectCode" placeholder="Masukan Judul Pengumuman Skripsi">
                                                 @error('title')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputDesc">Keterangan</label>
-                                                <textarea class="form-control" name="desc" id="exampleInputDesc" rows="5" placeholder="Masukan keterangan ..."></textarea>
+                                                <textarea class="form-control" name="desc" id="exampleInputDesc" rows="5" placeholder="Masukan keterangan ...">{{$data->description}}</textarea>
                                                 @error('desc')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputFile">File</label>
-                                                <input type="file" name="file" class="form-control" id="exampleInputFile">
+                                                <input type="file" name="file" class="form-control" id="exampleInputFile">{{$data -> file}}</input>
+
                                                 @error('file')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
