@@ -383,4 +383,83 @@ class LectionControllers extends Controller
 
         return redirect()->route('admin.skripsi.index')->with('success', 'Data Pengumuman Skripsi berhasil dihapus');
     }
+
+    //Lection/Skripsi/File Controller
+    public function skripsi_file_create()
+    {
+        return view('page.skripsi.berkas.create');
+    }
+
+    public function skripsi_file_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'file' => 'required|mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('desc');
+
+        $file = $request->file('file');
+        $file_name = time() . "_" . $file->getClientOriginalName();
+        $file->move('uploads/skripsi/file', $file_name);
+
+        $data['file'] = $file_name;
+
+        Skripsi_File::create($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'File Skripsi baru berhasil ditambahkan');
+    }
+
+    public function skripsi_file_edit($id)
+    {
+        $data = Skripsi_File::find($id);
+
+        return view('page.skripsi.berkas.edit', compact('data'));
+    }
+
+    public function skripsi_file_update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'min:3|max:255',
+            'description' => 'min:3|max:255',
+            'file' => 'mimes:pdf,docs|max:10000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('desc');
+
+        $file = $request->file('file');
+        if ($file) {
+            $file_name = time() . "_" . $file->getClientOriginalName();
+            $file->move('uploads/skripsi/file', $file_name);
+            $data['file'] = $file_name;
+        }
+
+        Skripsi_File::where('id', $id)->update($data);
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil diubah');
+    }
+
+    public function skripsi_file_delete($id)
+    {
+        Skripsi_File::where('id', $id)->delete();
+
+        return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil dihapus');
+    }
 }
