@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('image')->nullable()->after('remember_token');
+        Schema::create('skripsi-files', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('desc')->nullable();
+            $table->string('link')->nullable();
+            $table->string('file')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image');
-        });
+        Schema::dropIfExists('skripsi-files');
     }
 };

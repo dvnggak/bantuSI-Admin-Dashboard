@@ -243,7 +243,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="{{route('admin.skripsi.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Skripsi</p>
                                     </a>
@@ -325,7 +325,6 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     @if (session('error'))
     <script>
         Swal.fire({
