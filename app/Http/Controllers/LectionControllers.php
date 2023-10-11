@@ -136,7 +136,7 @@ class LectionControllers extends Controller
     {
         $skripsi_syarat = new Skripsi_Syarat;
         $skripsi_panduan = new Skripsi_Panduan;
-        $skripsi_pengumuman = new Skripsi_Pengumuman();
+        $skripsi_pengumuman = new Skripsi_Pengumuman;
         $skripsi_file = new Skripsi_File;
 
         $skripsi_syarat = $skripsi_syarat->get();

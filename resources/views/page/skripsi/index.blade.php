@@ -1,5 +1,23 @@
 @extends('layout.main')
 @section('content')
+<style>
+    .table td {
+        max-width: 150px;
+        /* Set the maximum width for table cells */
+        margin: 0;
+        white-space: nowrap;
+        /* Prevent text from wrapping to the next line */
+        overflow: hidden;
+        /* Hide any content that exceeds the maximum width */
+        text-overflow: ellipsis;
+        /* Show ellipsis (...) for truncated text */
+    }
+
+    .table td a {
+        /* Smaller button */
+        padding: 2% 3px;
+    }
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
