@@ -118,6 +118,11 @@
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('admin.students.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>Mahasiswa</p>
+                            </a>
+                        <li class="nav-item">
                             <a href="{{route('logout')}}" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>

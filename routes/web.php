@@ -5,6 +5,7 @@ use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,4 +76,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
 
     // Lection/Kerja Praktek Route
     Route::get('/kerja-praktek/index', [LectionControllers::class, "kerja_praktek_index"])->name('kerja-praktek.index');
+
+    // Students Route
+    Route::get('/students/index', [StudentsController::class, "index"])->name('students.index');
 });
