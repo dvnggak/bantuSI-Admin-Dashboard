@@ -72,4 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('skripsi/file/edit/{id}', [LectionControllers::class, "skripsi_file_edit"])->name('skripsi.file.edit');
     Route::put('skripsi/file/update/{id}', [LectionControllers::class, "skripsi_file_update"])->name('skripsi.file.update');
     Route::delete('skripsi/file/delete/{id}', [LectionControllers::class, "skripsi_file_delete"])->name('skripsi.file.delete');
+
+    // Lection/Kerja Praktek Route
+    Route::get('/kerja-praktek/index', [LectionControllers::class, "kerja_praktek_index"])->name('kerja-praktek.index');
 });

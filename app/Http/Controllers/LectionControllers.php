@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kerjaPraktek_File;
 use App\Models\Skripsi_File;
 use App\Models\Skripsi_Panduan;
 use App\Models\Skripsi_Pengumuman;
@@ -461,5 +462,21 @@ class LectionControllers extends Controller
         Skripsi_File::where('id', $id)->delete();
 
         return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil dihapus');
+    }
+
+    //Lection/Kerja Praktek Controller
+    public function kerja_praktek_index()
+    {
+        $kerjaPraktek_syarat = new kerjaPraktek_Syarat;
+        $kerjaPraktek_panduan = new kerjaPraktek_Panduan;
+        $kerjaPraktek_pengumuman = new kerjaPraktek_Pengumuman;
+        $kerjaPraktek_file = new kerjaPraktek_File;
+
+        $kerjaPraktek_syarat = $kerjaPraktek_syarat->get();
+        $kerjaPraktek_panduan = $kerjaPraktek_panduan->get();
+        $kerjaPraktek_pengumuman = $kerjaPraktek_pengumuman->get();
+        $kerjaPraktek_file = $kerjaPraktek_file->get();
+
+        return view('page.kerjaPraktek.index', compact('kerjaPraktek_syarat', 'kerjaPraktek_panduan', 'kerjaPraktek_pengumuman', 'kerjaPraktek_file'));
     }
 }
