@@ -88,7 +88,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Kamu yakin ingin menghapus data Mahasiswa/i <b>{{ $d->nim }}</b> - <b>{{ $d->name }}</b>?&hellip;</p>
+                                                        <p>Kamu yakin ingin menghapus data Mahasiswa/i <br /> <b>{{ $d->nim }}</b> - <b>{{ $d->name }}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
                                                         <form action="{{route('admin.student.delete', ['nim' => $d->nim])}}" method="post">

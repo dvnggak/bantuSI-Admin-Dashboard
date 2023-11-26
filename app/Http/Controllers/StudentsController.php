@@ -127,4 +127,11 @@ class StudentsController extends Controller
 
         return redirect()->route('admin.student.index')->with('success', 'Data Mahasiswa/i Berhasil Diubah');
     }
+
+    public function delete($nim)
+    {
+        Students::where('nim', $nim)->delete();
+
+        return redirect()->route('admin.student.index')->with('success', 'Data Mahasiswa/i Berhasil Dihapus');
+    }
 }
