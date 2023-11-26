@@ -78,5 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/kerja-praktek/index', [LectionControllers::class, "kerja_praktek_index"])->name('kerja-praktek.index');
 
     // Students Route
-    Route::get('/students/index', [StudentsController::class, "index"])->name('students.index');
+    Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');
+    Route::get('/student/create', [StudentsController::class, "create"])->name('student.create');
+    Route::post('/student/store', [StudentsController::class, "store"])->name('student.store');
 });

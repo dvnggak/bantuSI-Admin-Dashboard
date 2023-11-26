@@ -26,10 +26,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('admin.subject.create')}}" class="btn btn-primary mb-3">Tambah Mahasiswa/i</a>
+                            <a href="{{route('admin.student.create')}}" class="btn btn-primary mb-3">Tambah Mahasiswa/i</a>
 
                             <div class="card-tools">
-                                <form action="{{route('admin.students.index')}}" method="get">
+                                <form action="{{route('admin.student.index')}}" method="get">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="search" class="form-control float-right" value="{{$request->get('search')}}" placeholder="Search">
 
@@ -75,23 +75,23 @@
                                         <td>{{$d->faculty}}</td>
                                         <td>{{$d->study_program}}</td>
                                         <td>
-                                            <a href="{{route('admin.subject.edit', ['id' => $d->id])}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                            <a href="{{route('admin.student.edit', ['id' => $d->id])}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
                                             <a data-toggle="modal" data-target="#modal-delete{{$d->id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td>
                                         <div class="modal fade" id="modal-delete{{$d->id}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title">Confirm Delete Mata Kuliah</h4>
+                                                        <h4 class="modal-title">Confirm Delete Mahasiswa/i</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Kamu yakin ingin menghapus data Mata Kuliah <b>{{$d->subject_name}}</b>?&hellip;</p>
+                                                        <p>Kamu yakin ingin menghapus data Mahasiswa/i <b>{{$d->name}}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
-                                                        <form action="{{route('admin.subject.delete', ['id' => $d->id])}}" method="post">
+                                                        <form action="{{route('admin.student.delete', ['id' => $d->id])}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
