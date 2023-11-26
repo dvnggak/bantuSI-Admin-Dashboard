@@ -75,10 +75,10 @@
                                         <td>{{$d->faculty}}</td>
                                         <td>{{$d->study_program}}</td>
                                         <td>
-                                            <a href="{{route('admin.student.edit', ['id' => $d->id])}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
-                                            <a data-toggle="modal" data-target="#modal-delete{{$d->id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                            <a href="{{route('admin.student.edit', ['nim' => $d->nim])}}" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                            <a data-toggle="modal" data-target="#modal-delete{{$d->nim}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                                         </td>
-                                        <div class="modal fade" id="modal-delete{{$d->id}}">
+                                        <div class="modal fade" id="modal-delete{{$d->nim}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -88,10 +88,10 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Kamu yakin ingin menghapus data Mahasiswa/i <b>{{$d->name}}</b>?&hellip;</p>
+                                                        <p>Kamu yakin ingin menghapus data Mahasiswa/i <b>{{ $d->nim }}</b> - <b>{{ $d->name }}</b>?&hellip;</p>
                                                     </div>
                                                     <div class="modal-footer justify-content-between">
-                                                        <form action="{{route('admin.student.delete', ['id' => $d->id])}}" method="post">
+                                                        <form action="{{route('admin.student.delete', ['nim' => $d->nim])}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

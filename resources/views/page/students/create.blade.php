@@ -72,7 +72,7 @@
                                                     <option>Laki - laki</option>
                                                     <option>Perempuan</option>
                                                 </select>
-                                                @error('subject-day')
+                                                @error('gender')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>

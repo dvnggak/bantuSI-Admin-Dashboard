@@ -81,4 +81,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');
     Route::get('/student/create', [StudentsController::class, "create"])->name('student.create');
     Route::post('/student/store', [StudentsController::class, "store"])->name('student.store');
+    Route::get('/student/edit/{nim}', [StudentsController::class, "edit"])->name('student.edit');
+    Route::put('/student/update/{nim}', [StudentsController::class, "update"])->name('student.update');
+    Route::delete('/student/delete/{nim}', [StudentsController::class, "delete"])->name('student.delete');
 });
