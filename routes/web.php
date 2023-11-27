@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
@@ -86,4 +87,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::delete('/student/delete/{nim}', [StudentsController::class, "delete"])->name('student.delete');
 
     // Academic Files Route
+    Route::get('/file/index', [FileController::class, "index"])->name('file.index');
+    Route::get('/file/create', [FileController::class, "create"])->name('file.create');
+    Route::post('/file/store', [FileController::class, "store"])->name('file.store');
+    Route::get('/file/edit/{code}', [FileController::class, "edit"])->name('file.edit');
+    Route::put('/file/update/{code}', [FileController::class, "update"])->name('file.update');
+    Route::delete('/file/delete/{code}', [FileController::class, "delete"])->name('file.delete');
 });
