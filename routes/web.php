@@ -84,4 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/student/edit/{nim}', [StudentsController::class, "edit"])->name('student.edit');
     Route::put('/student/update/{nim}', [StudentsController::class, "update"])->name('student.update');
     Route::delete('/student/delete/{nim}', [StudentsController::class, "delete"])->name('student.delete');
+
+    // Academic Files Route
+    Route::get('/file/index', [::class, "file_index"])->name('file.index');
 });

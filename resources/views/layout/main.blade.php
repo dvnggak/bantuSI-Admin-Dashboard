@@ -96,7 +96,7 @@
                                 </p>
                                 <i class="right fas fa-angle-left"></i>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ml-4">
                                 <li class="nav-item">
                                     <a href="{{route('admin.kerja-praktek.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -120,9 +120,16 @@
                         <li class="nav-item">
                             <a href="{{route('admin.student.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-graduate"></i>
-                                <p>Mahasiswa</p>
+                                <p>Mahasiswa/i</p>
                             </a>
+                        </li>
                         <li class="nav-item">
+                            <a href="{{route('admin.file.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Berkas Akademik</p>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-5">
                             <a href="{{route('logout')}}" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
