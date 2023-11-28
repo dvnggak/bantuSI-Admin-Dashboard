@@ -10,7 +10,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ion cons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
@@ -121,6 +121,12 @@
                             <a href="{{route('admin.student.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-graduate"></i>
                                 <p>Mahasiswa/i</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.student.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-bullhorn"></i>
+                                <p>Pengumuman</p>
                             </a>
                         </li>
                         <li class="nav-item">
