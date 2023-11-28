@@ -124,7 +124,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.student.index')}}" class="nav-link">
+                            <a href="{{route('admin.announcement.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-bullhorn"></i>
                                 <p>Pengumuman</p>
                             </a>

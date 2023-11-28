@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectionControllers;
@@ -93,4 +94,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/file/edit/{code}', [FileController::class, "edit"])->name('file.edit');
     Route::put('/file/update/{code}', [FileController::class, "update"])->name('file.update');
     Route::delete('/file/delete/{code}', [FileController::class, "delete"])->name('file.delete');
+
+    // Announcement Route
+    Route::get('/announcement/index', [AnnouncementController::class, "index"])->name('announcement.index');
+    Route::get('/announcement/create', [AnnouncementController::class, "create"])->name('announcement.create');
+    Route::post('/announcement/store', [AnnouncementController::class, "store"])->name('announcement.store');
+    Route::get('/announcement/edit/{code}', [AnnouncementController::class, "edit"])->name('announcement.edit');
+    Route::put('/announcement/update/{code}', [AnnouncementController::class, "update"])->name('announcement.update');
+    Route::delete('/announcement/delete/{code}', [AnnouncementController::class, "delete"])->name('announcement.delete');
 });
