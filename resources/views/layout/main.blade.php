@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Perkuliahan
@@ -129,14 +129,14 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a class="nav-link">
                                 <i class="nav-icon fas fa-money-bill-wave"></i>
                                 <p>Pembayaran</p>
                                 <i class="right fas fa-angle-left"></i>
                             </a>
                             <ul class="nav nav-treeview ml-4">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('admin.payment.guide.index')}}" class="nav-link">
                                         <i class="nav-icon fas fa-question-circle"></i>
                                         <p>Panduan</p>
                                     </a>

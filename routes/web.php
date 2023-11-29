@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PaymentGuideController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
@@ -102,4 +103,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/announcement/edit/{code}', [AnnouncementController::class, "edit"])->name('announcement.edit');
     Route::put('/announcement/update/{code}', [AnnouncementController::class, "update"])->name('announcement.update');
     Route::delete('/announcement/delete/{code}', [AnnouncementController::class, "delete"])->name('announcement.delete');
+
+    // Payment Guide Route
+    Route::get('/payment/guide/index', [PaymentGuideController::class, "payment_guide_index"])->name('payment.guide.index');
+    Route::get('/payment/guide/create', [PaymentGuideController::class, "payment_guide_create"])->name('payment.guide.create');
+    Route::post('/payment/guide/store', [PaymentGuideController::class, "payment_guide_store"])->name('payment.guide.store');
+    Route::get('/payment/guide/edit/{id}', [PaymentGuideController::class, "payment_guide_edit"])->name('payment.guide.edit');
+    Route::put('/payment/guide/update/{id}', [PaymentGuideController::class, "payment_guide_update"])->name('payment.guide.update');
+    Route::delete('/payment/guide/delete/{id}', [PaymentGuideController::class, "payment_guide_delete"])->name('payment.guide.delete');
 });
