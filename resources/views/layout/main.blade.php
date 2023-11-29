@@ -39,7 +39,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="public/storage/bantuSI-logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin 1</span>
             </a>
 
@@ -90,6 +90,17 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-university"></i>
+                                <p>Profil Prodi</p>
+                            </a>
+                        <li class="nav-item">
+                            <a href="{{route('admin.student.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>Mahasiswa/i</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Perkuliahan
@@ -118,10 +129,25 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.student.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-graduate"></i>
-                                <p>Mahasiswa/i</p>
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-money-bill-wave"></i>
+                                <p>Pembayaran</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
+                            <ul class="nav nav-treeview ml-4">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="nav-icon fas fa-question-circle"></i>
+                                        <p>Panduan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="nav-icon fas fa-calendar-alt"></i>
+                                        <p>Jadwal</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.announcement.index')}}" class="nav-link">
