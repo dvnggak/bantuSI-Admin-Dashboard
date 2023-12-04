@@ -142,7 +142,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('admin.payment.schedule.index')}}" class="nav-link">
                                         <i class="nav-icon fas fa-calendar-alt"></i>
                                         <p>Jadwal</p>
                                     </a>

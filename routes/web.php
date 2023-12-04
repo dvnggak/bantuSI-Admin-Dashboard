@@ -7,6 +7,7 @@ use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PaymentGuideController;
+use App\Http\Controllers\PaymentScheduleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
@@ -113,10 +114,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::delete('/payment/guide/delete/{id}', [PaymentGuideController::class, "payment_guide_delete"])->name('payment.guide.delete');
 
     // Payment Schedule Route
-    Route::get('/payment/schedule/index', [PaymentGuideController::class, "payment_schedule_index"])->name('payment.schedule.index');
-    Route::get('/payment/schedule/create', [PaymentGuideController::class, "payment_schedule_create"])->name('payment.schedule.create');
-    Route::post('/payment/schedule/store', [PaymentGuideController::class, "payment_schedule_store"])->name('payment.schedule.store');
-    Route::get('/payment/schedule/edit/{id}', [PaymentGuideController::class, "payment_schedule_edit"])->name('payment.schedule.edit');
-    Route::put('/payment/schedule/update/{id}', [PaymentGuideController::class, "payment_schedule_update"])->name('payment.schedule.update');
-    Route::delete('/payment/schedule/delete/{id}', [PaymentGuideController::class, "payment_schedule_delete"])->name('payment.schedule.delete');
+    Route::get('/payment/schedule/index', [PaymentScheduleController::class, "payment_schedule_index"])->name('payment.schedule.index');
+    Route::get('/payment/schedule/create', [PaymentScheduleController::class, "payment_schedule_create"])->name('payment.schedule.create');
+    Route::post('/payment/schedule/store', [PaymentScheduleController::class, "payment_schedule_store"])->name('payment.schedule.store');
+    Route::get('/payment/schedule/edit/{id}', [PaymentScheduleController::class, "payment_schedule_edit"])->name('payment.schedule.edit');
+    Route::put('/payment/schedule/update/{id}', [PaymentScheduleController::class, "payment_schedule_update"])->name('payment.schedule.update');
+    Route::delete('/payment/schedule/delete/{id}', [PaymentScheduleController::class, "payment_schedule_delete"])->name('payment.schedule.delete');
 });
