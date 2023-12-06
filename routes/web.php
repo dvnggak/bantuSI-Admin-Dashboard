@@ -4,6 +4,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectionControllers;
+use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MajoringProfileController;
@@ -129,4 +130,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/majoring/profile/edit/{id}', [MajoringProfileController::class, "majoring_profile_edit"])->name('majoring.profile.edit');
     Route::put('/majoring/profile/update/{id}', [MajoringProfileController::class, "majoring_profile_update"])->name('majoring.profile.update');
     Route::delete('/majoring/profile/delete/{id}', [MajoringProfileController::class, "majoring_profile_delete"])->name('majoring.profile.delete');
+
+    // Majoring Lecturers Route
+    Route::get('/majoring/lecturers/index', [LecturerController::class, "majoring_lecturers_index"])->name('majoring.lecturers.index');
+    Route::get('/majoring/lecturers/create', [LecturerController::class, "majoring_lecturers_create"])->name('majoring.lecturers.create');
+    Route::post('/majoring/lecturers/store', [LecturerController::class, "majoring_lecturers_store"])->name('majoring.lecturers.store');
+    Route::get('/majoring/lecturers/edit/{nik}', [LecturerController::class, "majoring_lecturers_edit"])->name('majoring.lecturers.edit');
+    Route::put('/majoring/lecturers/update/{nik}', [LecturerController::class, "majoring_lecturers_update"])->name('majoring.lecturers.update');
+    Route::delete('/majoring/lecturers/delete/{nik}', [LecturerController::class, "majoring_lecturers_delete"])->name('majoring.lecturers.delete');
 });

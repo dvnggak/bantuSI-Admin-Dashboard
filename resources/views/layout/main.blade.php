@@ -102,7 +102,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.skripsi.index')}}" class="nav-link">
+                                    <a href="{{route('admin.majoring.lecturers.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Daftar Dosen</p>
                                     </a>

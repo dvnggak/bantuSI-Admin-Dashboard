@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Mahasiswa/i</h1>
+                    <h1 class="m-0">Daftar Dosen</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Tambah Mahasiswa/i</li>
+                        <li class="breadcrumb-item active">Tambah Dosen</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('admin.student.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.majoring.lecturers.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-- left column -->
@@ -29,7 +29,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Form Tambah Mahasiswa/i</h3>
+                                <h3 class="card-title">Form Tambah Dosen</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -38,36 +38,29 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputStudentNIM">NIM</label>
-                                                <input type="number" name="nim" class="form-control" id="exampleInputStudentNIM" placeholder="Masukan NIM">
-                                                @error('nim')
+                                                <label for="exampleInputLecturerNik">NIK</label>
+                                                <input type="number" name="nik" class="form-control" id="exampleInputLecturerNik" placeholder="Masukan NIK">
+                                                @error('nik')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputStudentName">Nama Mahasiswa/i</label>
-                                                <input type="text" name="name" class="form-control" id="exampleInputStudentName" placeholder="Masukan Nama Mahasiswa/i">
+                                                <label for="exampleInputLecturerNidn">NIDN</label>
+                                                <input type="number" name="nidn" class="form-control" id="exampleInputLecturerNidn" placeholder="Masukan NIDN">
+                                                @error('nidn')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLecturerName">Nama Dosen</label>
+                                                <input type="text" name="name" class="form-control" id="exampleInputLecturerName" placeholder="Masukan Nama Dosen">
                                                 @error('name')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputStudentEmail">Email Student</label>
-                                                <input type="email" name="email" class="form-control" id="exampleInputStudentEmail" placeholder="Masukan Email">
-                                                @error('email')
-                                                <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputStudentPhoneNumber">Nomor Telepon</label>
-                                                <input type="number" name="phone_number" class="form-control" id="exampleInputStudentPhoneNumber" placeholder="Masukan Nomor Telepon">
-                                                @error('phone_number')
-                                                <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputStudentGender">Gender</label>
-                                                <select class="form-control" name="gender" id="exampleInputStudentGender">
+                                                <label for="exampleInputLecturerGender">Jenis Kelamin</label>
+                                                <select class="form-control" name="gender" id="exampleInputLecturerGender">
                                                     <option value="" selected></option>
                                                     <option>Laki - laki</option>
                                                     <option>Perempuan</option>
@@ -76,26 +69,10 @@
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputStudentFirstName">Nama Depan</label>
-                                                <input type="text" name="first_name" class="form-control" id="exampleInputStudentFirstName" placeholder="Masukan Nama Depan">
-                                                @error('first_name')
-                                                <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputStudentLastName">Nama Belakang</label>
-                                                <input type="text" name="last_name" class="form-control" id="exampleInputStudentLastName" placeholder="Masukan Nama Belakang">
-                                                @error('last_name')
-                                                <p class="text-danger">{{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputStudentBatch">Angkatan</label>
-                                                <input type="number" name="batch" class="form-control" id="exampleInputStudentBatch" placeholder="Masukan Angkatan">
-                                                @error('batch')
+                                                <label for="exampleInputUniversity">Universitas</label>
+                                                <input type="text" name="university" class="form-control" id="exampleInputUniversity" placeholder="Masukan Nama Universitas">
+                                                @error('university')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -167,24 +144,77 @@
                                                 }
                                             </script>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputFunctionalPosition">Jabatan Fungsional</label>
+                                                <input type="text" name="functional_position" class="form-control" id="exampleInputFunctionalPosition" placeholder="Masukan Jabatan Fungsional">
+                                                @error('functional_position')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmploymentStatus">Status Ikatan Kerja</label>
+                                                <select class="form-control" name="employment_status" id="exampleInputEmploymentStatus">
+                                                    <option value="" selected></option>
+                                                    <option>Aktif</option>
+                                                    <option>Non-Aktif</option>
+                                                </select>
+                                                @error('employment_status')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputHighestEducation">Pendidikan Tertinggi</label>
+                                                <input type="text" name="highest_education" class="form-control" id="exampleInputHighestEducation" placeholder="Masukan Pendidikan Tertinggi">
+                                                @error('highest_education')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLecturerStatus">Status</label>
+                                                <select class="form-control" name="status" id="exampleInputLecturerStatus">
+                                                    <option value="" selected></option>
+                                                    <option>Dosen Tetap</option>
+                                                    <option>Dosen Tidak Tetap</option>
+                                                </select>
+                                                @error('status')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLecturerEmail">Email</label>
+                                                <input type="email" name="email" class="form-control" id="exampleInputLecturerEmail" placeholder="Masukan Email">
+                                                @error('email')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputLecturerPhoneNumber">Nomor Telepon</label>
+                                                <input type="number" name="phone_number" class="form-control" id="exampleInputLecturerPhoneNumber" placeholder="Masukan Nomor Telepon">
+                                                @error('phone_number')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
-
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{route('admin.student.index')}}" class="btn btn-danger">Cancel</a>
+                                    <a href="{{route('admin.majoring.lecturers.index')}}" class="btn btn-danger">Cancel</a>
                                 </div>
-                            </form>
                         </div>
-                        <!-- /.card -->
-                    </div>
-                    <!--/.col (left) -->
-                </div>
+                        <!-- /.card-body -->
+
             </form>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+        </div>
+        <!-- /.card -->
+</div>
+<!--/.col (left) -->
+</div>
+</form>
+<!-- /.row -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
 @endsection
