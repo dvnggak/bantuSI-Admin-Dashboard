@@ -92,10 +92,11 @@
                             <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-university"></i>
                                 <p>Profil Prodi</p>
+                                <i class="right fas fa-angle-left"></i>
                             </a>
                             <ul class="nav nav-treeview ml-4">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.kerja-praktek.index')}}" class="nav-link">
+                                    <a href="{{route('admin.majoring.profile.index')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Profil</p>
                                     </a>

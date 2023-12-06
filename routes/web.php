@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LectionControllers;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\MajoringProfileController;
 use App\Http\Controllers\PaymentGuideController;
 use App\Http\Controllers\PaymentScheduleController;
 use App\Http\Controllers\RegisterController;
@@ -120,4 +121,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/payment/schedule/edit/{id}', [PaymentScheduleController::class, "payment_schedule_edit"])->name('payment.schedule.edit');
     Route::put('/payment/schedule/update/{id}', [PaymentScheduleController::class, "payment_schedule_update"])->name('payment.schedule.update');
     Route::delete('/payment/schedule/delete/{id}', [PaymentScheduleController::class, "payment_schedule_delete"])->name('payment.schedule.delete');
+
+    // Majoring Profile Route
+    Route::get('/majoring/profile/index', [MajoringProfileController::class, "majoring_profile_index"])->name('majoring.profile.index');
+    Route::get('/majoring/profile/create', [MajoringProfileController::class, "majoring_profile_create"])->name('majoring.profile.create');
+    Route::post('/majoring/profile/store', [MajoringProfileController::class, "majoring_profile_store"])->name('majoring.profile.store');
+    Route::get('/majoring/profile/edit/{id}', [MajoringProfileController::class, "majoring_profile_edit"])->name('majoring.profile.edit');
+    Route::put('/majoring/profile/update/{id}', [MajoringProfileController::class, "majoring_profile_update"])->name('majoring.profile.update');
+    Route::delete('/majoring/profile/delete/{id}', [MajoringProfileController::class, "majoring_profile_delete"])->name('majoring.profile.delete');
 });
