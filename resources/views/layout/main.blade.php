@@ -107,12 +107,6 @@
                                         <p>Daftar Dosen</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{route('admin.subject.index')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Struktur Organisasi</p>
-                                    </a>
-                                </li>
                             </ul>
                         <li class="nav-item">
                             <a href="{{route('admin.student.index')}}" class="nav-link">
