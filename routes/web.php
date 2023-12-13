@@ -78,6 +78,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::put('/skripsi/requisite/update/{code}', [LectionControllers::class, "skripsi_requisite_update"])->name('skripsi.requisite.update');
     Route::delete('/skripsi/requisite/delete/{code}', [LectionControllers::class, "skripsi_requisite_delete"])->name('skripsi.requisite.delete');
 
+    // Skripsi Panduan Route
+    Route::get('/skripsi/guide/index', [LectionControllers::class, "skripsi_guide_index"])->name('skripsi.guide.index');
+    Route::get('/skripsi/guide/create', [LectionControllers::class, "skripsi_guide_create"])->name('skripsi.guide.create');
+    Route::post('/skripsi/guide/store', [LectionControllers::class, "skripsi_guide_store"])->name('skripsi.guide.store');
+    Route::get('/skripsi/guide/edit/{code}', [LectionControllers::class, "skripsi_guide_edit"])->name('skripsi.guide.edit');
+    Route::put('/skripsi/guide/update/{code}', [LectionControllers::class, "skripsi_guide_update"])->name('skripsi.guide.update');
+    Route::delete('/skripsi/guide/delete/{code}', [LectionControllers::class, "skripsi_guide_delete"])->name('skripsi.guide.delete');
+
     // Students Route
     Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');
     Route::get('/student/create', [StudentsController::class, "create"])->name('student.create');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InternshipGuide;
 use App\Models\InternshipRequisite;
+use App\Models\SkripsiGuide;
 use App\Models\SkripsiRequisite;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
@@ -215,6 +216,92 @@ class LectionControllers extends Controller
         SkripsiRequisite::where('code', $code)->delete();
 
         return redirect()->route('admin.skripsi.requisite.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
+    }
+
+    //Lection/Skripsi Panduan Controller
+    public function skripsi_guide_index(Request $request)
+    {
+        $data = new SkripsiGuide;
+
+        if ($request->get('search')) {
+            $data = $data->where('title', 'LIKE', '%' . $request->get('search') . '%')
+                ->orWhere('desc', 'LIKE', '%' . $request->get('search') . '%');
+        }
+
+        $data = $data->get();
+
+        return view('page.skripsi.guide.index', compact('data', 'request'));
+    }
+
+    public function skripsi_guide_create()
+    {
+        return view('page.skripsi.guide.create');
+    }
+
+    public function skripsi_guide_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'link' => 'required|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        SkripsiGuide::create($data);
+
+        return redirect()->route('admin.skripsi.guide.index')->with('success', 'Panduan Skripsi baru berhasil ditambahkan');
+    }
+
+    public function skripsi_guide_edit($code)
+    {
+        $data = SkripsiGuide::where('code', $code)->first();
+
+        return view('page.skripsi.guide.edit', compact('data'));
+    }
+
+    public function skripsi_guide_update(Request $request, $code)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'min:3|max:255',
+            'desc' => 'min:3|max:255',
+            'link' => 'min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        SkripsiGuide::where('code', $code)->update($data);
+
+        return redirect()->route('admin.skripsi.guide.index')->with('success', 'Data Panduan Skripsi berhasil diubah');
+    }
+
+    public function skripsi_guide_delete($code)
+    {
+        SkripsiGuide::where('code', $code)->delete();
+
+        return redirect()->route('admin.skripsi.guide.index')->with('success', 'Data Panduan Skripsi berhasil dihapus');
     }
 
     //Lection/Kerja Praktek Syarat Controller

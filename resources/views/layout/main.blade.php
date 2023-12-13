@@ -158,7 +158,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="" class="nav-link">
+                                            <a href="{{route('admin.skripsi.guide.index')}}" class="nav-link">
                                                 <i class="nav-icon fas fa-question-circle"></i>
                                                 <p>Panduan</p>
                                             </a>
