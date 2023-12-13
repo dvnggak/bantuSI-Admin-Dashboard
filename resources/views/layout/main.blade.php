@@ -132,23 +132,37 @@
                                     <ul class="nav nav-treeview ml-3">
                                         <li class="nav-item">
                                             <a href="{{route('admin.internship.requisite.index')}}" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <i class="nav-icon fas fa-clipboard-list"></i>
                                                 <p>Syarat</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{route('admin.internship.guide.index')}}" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <i class="nav-icon fas fa-question-circle"></i>
                                                 <p>Panduan</p>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.skripsi.index')}}" class="nav-link">
+                                    <a class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Skripsi</p>
+                                        <i class="right fas fa-angle-left mr-2"></i>
                                     </a>
+                                    <ul class="nav nav-treeview ml-3">
+                                        <li class="nav-item">
+                                            <a href="{{route('admin.skripsi.requisite.index')}}" class="nav-link">
+                                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                                <p>Syarat</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link">
+                                                <i class="nav-icon fas fa-question-circle"></i>
+                                                <p>Panduan</p>
+                                            </a>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('admin.subject.index')}}" class="nav-link">

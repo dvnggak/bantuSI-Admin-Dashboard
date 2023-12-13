@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\InternshipGuide;
 use App\Models\InternshipRequisite;
-use App\Models\kerjaPraktek_File;
-use App\Models\Skripsi_File;
-use App\Models\Skripsi_Panduan;
-use App\Models\Skripsi_Pengumuman;
-use App\Models\SkSyarats;
+use App\Models\SkripsiRequisite;
 use App\Models\Subjects;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -135,337 +131,91 @@ class LectionControllers extends Controller
         return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil dihapus');
     }
 
-    // public function skripsi_index()
-    // {
-    //     $skripsi_syarat = new SkSyarats;
-    //     // $skripsi_panduan = new Skripsi_Panduan;
-    //     // $skripsi_pengumuman = new Skripsi_Pengumuman;
-    //     // $skripsi_file = new Skripsi_File;
-
-    //     $skripsi_syarat = $skripsi_syarat->get();
-    //     // $skripsi_panduan = $skripsi_panduan->get();
-    //     // $skripsi_pengumuman = $skripsi_pengumuman->get();
-    //     // $skripsi_file = $skripsi_file->get();
-
-    //     // return view('page.skripsi.index', compact('skripsi_syarat', 'skripsi_panduan', 'skripsi_pengumuman', 'skripsi_file'));
-    //     return view('page.skripsi.index', compact('skripsi_syarat'));
-    // }
-
-    // //Lection/Skripsi/Syarat Controller
-    // public function skripsi_syarat_create()
-    // {
-    //     return view('page.skripsi.syarat.create');
-    // }
-
-    // public function skripsi_syarat_store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'required|min:3|max:255',
-    //         'desc' => 'required|min:3|max:255',
-    //         'file' => 'required|mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     $file_name = time() . "_" . $file->getClientOriginalName();
-    //     $file->move('uploads/skripsi/syarat', $file_name);
-
-    //     $data['file'] = $file_name;
-
-    //     SkSyarats::create($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
-    // }
-
-    // public function skripsi_syarat_edit($id)
-    // {
-    //     $data = SkSyarats::find($id);
-
-    //     return view('page.skripsi.syarat.edit', compact('data'));
-    // }
-
-    // public function skripsi_syarat_update(Request $request, $id)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'min:3|max:255',
-    //         'description' => 'min:3|max:255',
-    //         'file' => 'mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     if ($file) {
-    //         $file_name = time() . "_" . $file->getClientOriginalName();
-    //         $file->move('uploads/skripsi/syarat', $file_name);
-    //         $data['file'] = $file_name;
-    //     }
-
-    //     SkSyarats::where('id', $id)->update($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil diubah');
-    // }
-
-    // public function skripsi_syarat_delete($id)
-    // {
-    //     SkSyarats::where('id', $id)->delete();
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
-    // }
-
-    // //Lection/Skripsi/Panduan Controller
-    // public function skripsi_panduan_create()
-    // {
-    //     return view('page.skripsi.panduan.create');
-    // }
-
-    // public function skripsi_panduan_store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'required|min:3|max:255',
-    //         'desc' => 'required|min:3|max:255',
-    //         'file' => 'required|mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     $file_name = time() . "_" . $file->getClientOriginalName();
-    //     $file->move('uploads/skripsi/panduan', $file_name);
-
-    //     $data['file'] = $file_name;
-
-    //     Skripsi_Panduan::create($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Panduan Skripsi baru berhasil ditambahkan');
-    // }
-
-    // public function skripsi_panduan_edit($id)
-    // {
-    //     $data = Skripsi_Panduan::find($id);
-
-    //     return view('page.skripsi.panduan.edit', compact('data'));
-    // }
-
-    // public function skripsi_panduan_update(Request $request, $id)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'min:3|max:255',
-    //         'description' => 'min:3|max:255',
-    //         'file' => 'mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     if ($file) {
-    //         $file_name = time() . "_" . $file->getClientOriginalName();
-    //         $file->move('uploads/skripsi/panduan', $file_name);
-    //         $data['file'] = $file_name;
-    //     }
-
-    //     Skripsi_Panduan::where('id', $id)->update($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Panduan Skripsi berhasil diubah');
-    // }
-
-    // public function skripsi_panduan_delete($id)
-    // {
-    //     Skripsi_Panduan::where('id', $id)->delete();
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Panduan Skripsi berhasil dihapus');
-    // }
-
-    // //Lection/Skripsi/Pengumuman Controller
-    // public function skripsi_pengumuman_create()
-    // {
-    //     return view('page.skripsi.pengumuman.create');
-    // }
-
-    // public function skripsi_pengumuman_store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'required|min:3|max:255',
-    //         'desc' => 'required|min:3|max:255',
-    //         'file' => 'required|mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     $file_name = time() . "_" . $file->getClientOriginalName();
-    //     $file->move('uploads/skripsi/pengumuman', $file_name);
-
-    //     $data['file'] = $file_name;
-
-    //     Skripsi_Pengumuman::create($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Pengumuman Skripsi baru berhasil ditambahkan');
-    // }
-
-    // public function skripsi_pengumuman_edit($id)
-    // {
-    //     $data = Skripsi_Pengumuman::find($id);
-
-    //     return view('page.skripsi.pengumuman.edit', compact('data'));
-    // }
-
-    // public function skripsi_pengumuman_update(Request $request, $id)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'min:3|max:255',
-    //         'description' => 'min:3|max:255',
-    //         'file' => 'mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     if ($file) {
-    //         $file_name = time() . "_" . $file->getClientOriginalName();
-    //         $file->move('uploads/skripsi/pengumuman', $file_name);
-    //         $data['file'] = $file_name;
-    //     }
-
-    //     Skripsi_Pengumuman::where('id', $id)->update($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Pengumuman Skripsi berhasil diubah');
-    // }
-
-    // public function skripsi_pengumuman_delete($id)
-    // {
-    //     Skripsi_Pengumuman::where('id', $id)->delete();
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Pengumuman Skripsi berhasil dihapus');
-    // }
-
-    // //Lection/Skripsi/File Controller
-    // public function skripsi_file_create()
-    // {
-    //     return view('page.skripsi.berkas.create');
-    // }
-
-    // public function skripsi_file_store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'required|min:3|max:255',
-    //         'desc' => 'required|min:3|max:255',
-    //         'file' => 'required|mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     $file_name = time() . "_" . $file->getClientOriginalName();
-    //     $file->move('uploads/skripsi/file', $file_name);
-
-    //     $data['file'] = $file_name;
-
-    //     Skripsi_File::create($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'File Skripsi baru berhasil ditambahkan');
-    // }
-
-    // public function skripsi_file_edit($id)
-    // {
-    //     $data = Skripsi_File::find($id);
-
-    //     return view('page.skripsi.berkas.edit', compact('data'));
-    // }
-
-    // public function skripsi_file_update(Request $request, $id)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'title' => 'min:3|max:255',
-    //         'description' => 'min:3|max:255',
-    //         'file' => 'mimes:pdf,docs|max:10000',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator)
-    //             ->withInput();
-    //     }
-
-    //     $data['title'] = $request->input('title');
-    //     $data['description'] = $request->input('desc');
-
-    //     $file = $request->file('file');
-    //     if ($file) {
-    //         $file_name = time() . "_" . $file->getClientOriginalName();
-    //         $file->move('uploads/skripsi/file', $file_name);
-    //         $data['file'] = $file_name;
-    //     }
-
-    //     Skripsi_File::where('id', $id)->update($data);
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil diubah');
-    // }
-
-    // public function skripsi_file_delete($id)
-    // {
-    //     Skripsi_File::where('id', $id)->delete();
-
-    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil dihapus');
-    // }
+    //Lection/Skripsi Syarat Controller
+    public function skripsi_requisite_index(Request $request)
+    {
+        $data = new SkripsiRequisite;
+
+        if ($request->get('search')) {
+            $data = $data->where('title', 'LIKE', '%' . $request->get('search') . '%')
+                ->orWhere('desc', 'LIKE', '%' . $request->get('search') . '%');
+        }
+
+        $data = $data->get();
+
+        return view('page.skripsi.requisite.index', compact('data', 'request'));
+    }
+
+    public function skripsi_requisite_create()
+    {
+        return view('page.skripsi.requisite.create');
+    }
+
+    public function skripsi_requisite_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'link' => 'required|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        SkripsiRequisite::create($data);
+
+        return redirect()->route('admin.skripsi.requisite.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
+    }
+
+    public function skripsi_requisite_edit($code)
+    {
+        $data = SkripsiRequisite::where('code', $code)->first();
+
+        return view('page.skripsi.requisite.edit', compact('data'));
+    }
+
+    public function skripsi_requisite_update(Request $request, $code)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'min:3|max:255',
+            'desc' => 'min:3|max:255',
+            'link' => 'min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        SkripsiRequisite::where('code', $code)->update($data);
+
+        return redirect()->route('admin.skripsi.requisite.index')->with('success', 'Data Syarat Skripsi berhasil diubah');
+    }
+
+    public function skripsi_requisite_delete($code)
+    {
+        SkripsiRequisite::where('code', $code)->delete();
+
+        return redirect()->route('admin.skripsi.requisite.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
+    }
 
     //Lection/Kerja Praktek Syarat Controller
     public function internship_requisite_index(Request $request)

@@ -53,33 +53,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::put('/subject/update/{id}', [LectionControllers::class, "subjectUpdate"])->name('subject.update');
     Route::delete('/subject/delete/{id}', [LectionControllers::class, "subjectDelete"])->name('subject.delete');
 
-    // Lection/Skripsi Route
-    Route::get('/skripsi/index', [LectionControllers::class, "skripsi_index"])->name('skripsi.index');
-    //Lection/Skripsi/Syarat Route
-    Route::get('skripsi/syarat/create', [LectionControllers::class, "skripsi_syarat_create"])->name('skripsi.syarat.create');
-    Route::post('skripsi/syarat/store', [LectionControllers::class, "skripsi_syarat_store"])->name('skripsi.syarat.store');
-    Route::get('skripsi/syarat/edit/{id}', [LectionControllers::class, "skripsi_syarat_edit"])->name('skripsi.syarat.edit');
-    Route::put('skripsi/syarat/update/{id}', [LectionControllers::class, "skripsi_syarat_update"])->name('skripsi.syarat.update');
-    Route::delete('skripsi/syarat/delete/{id}', [LectionControllers::class, "skripsi_syarat_delete"])->name('skripsi.syarat.delete');
-    //Lection/Skripsi/Panduan Route
-    Route::get('skripsi/panduan/create', [LectionControllers::class, "skripsi_panduan_create"])->name('skripsi.panduan.create');
-    Route::post('skripsi/panduan/store', [LectionControllers::class, "skripsi_panduan_store"])->name('skripsi.panduan.store');
-    Route::get('skripsi/panduan/edit/{id}', [LectionControllers::class, "skripsi_panduan_edit"])->name('skripsi.panduan.edit');
-    Route::put('skripsi/panduan/update/{id}', [LectionControllers::class, "skripsi_panduan_update"])->name('skripsi.panduan.update');
-    Route::delete('skripsi/panduan/delete/{id}', [LectionControllers::class, "skripsi_panduan_delete"])->name('skripsi.panduan.delete');
-    //Lection/Skripsi/Pengumuman Route
-    Route::get('skripsi/pengumuman/create', [LectionControllers::class, "skripsi_pengumuman_create"])->name('skripsi.pengumuman.create');
-    Route::post('skripsi/pengumuman/store', [LectionControllers::class, "skripsi_pengumuman_store"])->name('skripsi.pengumuman.store');
-    Route::get('skripsi/pengumuman/edit/{id}', [LectionControllers::class, "skripsi_pengumuman_edit"])->name('skripsi.pengumuman.edit');
-    Route::put('skripsi/pengumuman/update/{id}', [LectionControllers::class, "skripsi_pengumuman_update"])->name('skripsi.pengumuman.update');
-    Route::delete('skripsi/pengumuman/delete/{id}', [LectionControllers::class, "skripsi_pengumuman_delete"])->name('skripsi.pengumuman.delete');
-    //Lection/Skripsi/File Route
-    Route::get('skripsi/file/create', [LectionControllers::class, "skripsi_file_create"])->name('skripsi.file.create');
-    Route::post('skripsi/file/store', [LectionControllers::class, "skripsi_file_store"])->name('skripsi.file.store');
-    Route::get('skripsi/file/edit/{id}', [LectionControllers::class, "skripsi_file_edit"])->name('skripsi.file.edit');
-    Route::put('skripsi/file/update/{id}', [LectionControllers::class, "skripsi_file_update"])->name('skripsi.file.update');
-    Route::delete('skripsi/file/delete/{id}', [LectionControllers::class, "skripsi_file_delete"])->name('skripsi.file.delete');
-
     // Lection
     //Syarat Kerja Praktek Route
     Route::get('/internship/requisite/index', [LectionControllers::class, "internship_requisite_index"])->name('internship.requisite.index');
@@ -96,6 +69,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::get('/internship/guide/edit/{code}', [LectionControllers::class, "internship_guide_edit"])->name('internship.guide.edit');
     Route::put('/internship/guide/update/{code}', [LectionControllers::class, "internship_guide_update"])->name('internship.guide.update');
     Route::delete('/internship/guide/delete/{code}', [LectionControllers::class, "internship_guide_delete"])->name('internship.guide.delete');
+
+    // Skripsi Syarat Route
+    Route::get('/skripsi/requisite/index', [LectionControllers::class, "skripsi_requisite_index"])->name('skripsi.requisite.index');
+    Route::get('/skripsi/requisite/create', [LectionControllers::class, "skripsi_requisite_create"])->name('skripsi.requisite.create');
+    Route::post('/skripsi/requisite/store', [LectionControllers::class, "skripsi_requisite_store"])->name('skripsi.requisite.store');
+    Route::get('/skripsi/requisite/edit/{code}', [LectionControllers::class, "skripsi_requisite_edit"])->name('skripsi.requisite.edit');
+    Route::put('/skripsi/requisite/update/{code}', [LectionControllers::class, "skripsi_requisite_update"])->name('skripsi.requisite.update');
+    Route::delete('/skripsi/requisite/delete/{code}', [LectionControllers::class, "skripsi_requisite_delete"])->name('skripsi.requisite.delete');
 
     // Students Route
     Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');

@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Panduan Skripsi</h1>
+                    <h1 class="m-0">Syarat Skripsi</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Tambah Panduan Skripsi</li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Syarat Skripsi</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -21,15 +21,16 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <form action="{{route('admin.skripsi.panduan.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.skripsi.requisite.update', ['code'=> $data->code])}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-12">
+                    <div class="col-md-10 offset-md-1 ">
                         <!-- general form elements -->
-                        <div class="card card-primary">
+                        <div class="card card-primary shadow">
                             <div class="card-header">
-                                <h3 class="card-title">Form Tambah Panduan Skripsi</h3>
+                                <h3 class="card-title">Form Edit Syarat Skripsi</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -38,23 +39,30 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="exampleInputTitle">Judul</label>
-                                                <input type="text" name="title" class="form-control" id="exampleInputSubjectCode" placeholder="Masukan Judul Panduan Skripsi">
+                                                <label for="exampleInputFileCode">Kode Syarat Skripsi</label>
+                                                <input value="{{$data->code}}" type="text" name="code" class="form-control" id="exampleInputFileCode" placeholder="Masukan Kode Syarat Skripsi">
+                                                @error('code')
+                                                <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputFileTitle">Judul Syarat Skripsi</label>
+                                                <input value="{{$data->title}}" type="text" name="title" class="form-control" id="exampleInputFileTitle" placeholder="Masukan Judul Syarat Skripsi">
                                                 @error('title')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputDesc">Keterangan</label>
-                                                <textarea class="form-control" name="desc" id="exampleInputDesc" rows="5" placeholder="Masukan keterangan ..."></textarea>
+                                                <label for="exampleInputFileDesc">Deskripsi</label>
+                                                <textarea name="desc" class="form-control" id="exampleInputFileDesc" placeholder="Masukan Deskripsi">{{$data -> desc}}</textarea>
                                                 @error('desc')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputFile">File</label>
-                                                <input type="file" name="file" class="form-control" id="exampleInputFile">
-                                                @error('file')
+                                                <label for="exampleInputFileLink">Tautan</label>
+                                                <input value="{{$data->link}}" type="text" name="link" class="form-control" id="exampleInputFileLink" placeholder="Masukan Tautan">
+                                                @error('link')
                                                 <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -64,7 +72,8 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary start">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a href="{{route('admin.skripsi.requisite.index')}}" class="btn btn-danger">Cancel</a>
                                 </div>
                             </form>
                         </div>
