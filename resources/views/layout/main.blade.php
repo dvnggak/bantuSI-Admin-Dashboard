@@ -124,10 +124,19 @@
                             </a>
                             <ul class="nav nav-treeview ml-4">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.kerja-praktek.index')}}" class="nav-link">
+                                    <a class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Kerja Praktek</p>
+                                        <i class="right fas fa-angle-left mr-2"></i>
                                     </a>
+                                    <ul class="nav nav-treeview ml-3">
+                                        <li class="nav-item">
+                                            <a href="{{route('admin.internship.requisite.index')}}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Syarat Kerja Praktek</p>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{route('admin.skripsi.index')}}" class="nav-link">

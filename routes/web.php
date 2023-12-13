@@ -81,7 +81,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::delete('skripsi/file/delete/{id}', [LectionControllers::class, "skripsi_file_delete"])->name('skripsi.file.delete');
 
     // Lection/Kerja Praktek Route
-    Route::get('/kerja-praktek/index', [LectionControllers::class, "kerja_praktek_index"])->name('kerja-praktek.index');
+    Route::get('/internship/requisite/index', [LectionControllers::class, "internship_requisite_index"])->name('internship.requisite.index');
+    Route::get('/internship/requisite/create', [LectionControllers::class, "internship_requisite_create"])->name('internship.requisite.create');
+    Route::post('/internship/requisite/store', [LectionControllers::class, "internship_requisite_store"])->name('internship.requisite.store');
+    Route::get('/internship/requisite/edit/{code}', [LectionControllers::class, "internship_requisite_edit"])->name('internship.requisite.edit');
+    Route::put('/internship/requisite/update/{code}', [LectionControllers::class, "internship_requisite_update"])->name('internship.requisite.update');
+    Route::delete('/internship/requisite/delete/{code}', [LectionControllers::class, "internship_requisite_delete"])->name('internship.requisite.delete');
 
     // Students Route
     Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InternshipRequisite;
 use App\Models\kerjaPraktek_File;
 use App\Models\Skripsi_File;
 use App\Models\Skripsi_Panduan;
@@ -133,100 +134,100 @@ class LectionControllers extends Controller
         return redirect()->route('admin.subject.index')->with('success', 'Data Mata Kuliah berhasil dihapus');
     }
 
-    public function skripsi_index()
-    {
-        $skripsi_syarat = new SkSyarats;
-        // $skripsi_panduan = new Skripsi_Panduan;
-        // $skripsi_pengumuman = new Skripsi_Pengumuman;
-        // $skripsi_file = new Skripsi_File;
+    // public function skripsi_index()
+    // {
+    //     $skripsi_syarat = new SkSyarats;
+    //     // $skripsi_panduan = new Skripsi_Panduan;
+    //     // $skripsi_pengumuman = new Skripsi_Pengumuman;
+    //     // $skripsi_file = new Skripsi_File;
 
-        $skripsi_syarat = $skripsi_syarat->get();
-        // $skripsi_panduan = $skripsi_panduan->get();
-        // $skripsi_pengumuman = $skripsi_pengumuman->get();
-        // $skripsi_file = $skripsi_file->get();
+    //     $skripsi_syarat = $skripsi_syarat->get();
+    //     // $skripsi_panduan = $skripsi_panduan->get();
+    //     // $skripsi_pengumuman = $skripsi_pengumuman->get();
+    //     // $skripsi_file = $skripsi_file->get();
 
-        // return view('page.skripsi.index', compact('skripsi_syarat', 'skripsi_panduan', 'skripsi_pengumuman', 'skripsi_file'));
-        return view('page.skripsi.index', compact('skripsi_syarat'));
-    }
+    //     // return view('page.skripsi.index', compact('skripsi_syarat', 'skripsi_panduan', 'skripsi_pengumuman', 'skripsi_file'));
+    //     return view('page.skripsi.index', compact('skripsi_syarat'));
+    // }
 
-    //Lection/Skripsi/Syarat Controller
-    public function skripsi_syarat_create()
-    {
-        return view('page.skripsi.syarat.create');
-    }
+    // //Lection/Skripsi/Syarat Controller
+    // public function skripsi_syarat_create()
+    // {
+    //     return view('page.skripsi.syarat.create');
+    // }
 
-    public function skripsi_syarat_store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|min:3|max:255',
-            'desc' => 'required|min:3|max:255',
-            'file' => 'required|mimes:pdf,docs|max:10000',
-        ]);
+    // public function skripsi_syarat_store(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'title' => 'required|min:3|max:255',
+    //         'desc' => 'required|min:3|max:255',
+    //         'file' => 'required|mimes:pdf,docs|max:10000',
+    //     ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+    //     if ($validator->fails()) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
 
-        $data['title'] = $request->input('title');
-        $data['description'] = $request->input('desc');
+    //     $data['title'] = $request->input('title');
+    //     $data['description'] = $request->input('desc');
 
-        $file = $request->file('file');
-        $file_name = time() . "_" . $file->getClientOriginalName();
-        $file->move('uploads/skripsi/syarat', $file_name);
+    //     $file = $request->file('file');
+    //     $file_name = time() . "_" . $file->getClientOriginalName();
+    //     $file->move('uploads/skripsi/syarat', $file_name);
 
-        $data['file'] = $file_name;
+    //     $data['file'] = $file_name;
 
-        SkSyarats::create($data);
+    //     SkSyarats::create($data);
 
-        return redirect()->route('admin.skripsi.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
-    }
+    //     return redirect()->route('admin.skripsi.index')->with('success', 'Syarat Skripsi baru berhasil ditambahkan');
+    // }
 
-    public function skripsi_syarat_edit($id)
-    {
-        $data = SkSyarats::find($id);
+    // public function skripsi_syarat_edit($id)
+    // {
+    //     $data = SkSyarats::find($id);
 
-        return view('page.skripsi.syarat.edit', compact('data'));
-    }
+    //     return view('page.skripsi.syarat.edit', compact('data'));
+    // }
 
-    public function skripsi_syarat_update(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'min:3|max:255',
-            'description' => 'min:3|max:255',
-            'file' => 'mimes:pdf,docs|max:10000',
-        ]);
+    // public function skripsi_syarat_update(Request $request, $id)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'title' => 'min:3|max:255',
+    //         'description' => 'min:3|max:255',
+    //         'file' => 'mimes:pdf,docs|max:10000',
+    //     ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+    //     if ($validator->fails()) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
 
-        $data['title'] = $request->input('title');
-        $data['description'] = $request->input('desc');
+    //     $data['title'] = $request->input('title');
+    //     $data['description'] = $request->input('desc');
 
-        $file = $request->file('file');
-        if ($file) {
-            $file_name = time() . "_" . $file->getClientOriginalName();
-            $file->move('uploads/skripsi/syarat', $file_name);
-            $data['file'] = $file_name;
-        }
+    //     $file = $request->file('file');
+    //     if ($file) {
+    //         $file_name = time() . "_" . $file->getClientOriginalName();
+    //         $file->move('uploads/skripsi/syarat', $file_name);
+    //         $data['file'] = $file_name;
+    //     }
 
-        SkSyarats::where('id', $id)->update($data);
+    //     SkSyarats::where('id', $id)->update($data);
 
-        return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil diubah');
-    }
+    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil diubah');
+    // }
 
-    public function skripsi_syarat_delete($id)
-    {
-        SkSyarats::where('id', $id)->delete();
+    // public function skripsi_syarat_delete($id)
+    // {
+    //     SkSyarats::where('id', $id)->delete();
 
-        return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
-    }
+    //     return redirect()->route('admin.skripsi.index')->with('success', 'Data Syarat Skripsi berhasil dihapus');
+    // }
 
     // //Lection/Skripsi/Panduan Controller
     // public function skripsi_panduan_create()
@@ -465,19 +466,89 @@ class LectionControllers extends Controller
     //     return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil dihapus');
     // }
 
-    // //Lection/Kerja Praktek Controller
-    // public function kerja_praktek_index()
-    // {
-    //     $kerjaPraktek_syarat = new kerjaPraktek_Syarat;
-    //     $kerjaPraktek_panduan = new kerjaPraktek_Panduan;
-    //     $kerjaPraktek_pengumuman = new kerjaPraktek_Pengumuman;
-    //     $kerjaPraktek_file = new kerjaPraktek_File;
+    //Lection/Kerja Praktek Controller
+    public function internship_requisite_index(Request $request)
+    {
+        $data = new InternshipRequisite;
 
-    //     $kerjaPraktek_syarat = $kerjaPraktek_syarat->get();
-    //     $kerjaPraktek_panduan = $kerjaPraktek_panduan->get();
-    //     $kerjaPraktek_pengumuman = $kerjaPraktek_pengumuman->get();
-    //     $kerjaPraktek_file = $kerjaPraktek_file->get();
+        if ($request->get('search')) {
+            $data = $data->where('title', 'LIKE', '%' . $request->get('search') . '%')
+                ->orWhere('description', 'LIKE', '%' . $request->get('search') . '%');
+        }
 
-    //     return view('page.kerjaPraktek.index', compact('kerjaPraktek_syarat', 'kerjaPraktek_panduan', 'kerjaPraktek_pengumuman', 'kerjaPraktek_file'));
-    // }
+        $data = $data->get();
+
+        return view('page.internship.requisite.index', compact('data', 'request'));
+    }
+
+    public function internship_requisite_create()
+    {
+        return view('page.internship.requisite.create');
+    }
+
+    public function internship_requisite_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'link' => 'required|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        InternshipRequisite::create($data);
+
+        return redirect()->route('admin.internship.requisite.index')->with('success', 'Syarat Kerja Praktek baru berhasil ditambahkan');
+    }
+
+    public function internship_requisite_edit($code)
+    {
+        $data = InternshipRequisite::where('code', $code)->first();
+
+        return view('page.internship.requisite.edit', compact('data'));
+    }
+
+    public function internship_requisite_update(Request $request, $code)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'min:3|max:255',
+            'desc' => 'min:3|max:255',
+            'link' => 'min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['link'] = $request->input('link');
+
+        InternshipRequisite::where('code', $code)->update($data);
+
+        return redirect()->route('admin.internship.requisite.index')->with('success', 'Data Syarat Kerja Praktek berhasil diubah');
+    }
+
+    public function internship_requisite_delete($code)
+    {
+        InternshipRequisite::where('code', $code)->delete();
+
+        return redirect()->route('admin.internship.requisite.index')->with('success', 'Data Syarat Kerja Praktek berhasil dihapus');
+    }
 }
