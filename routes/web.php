@@ -80,13 +80,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.'], 
     Route::put('skripsi/file/update/{id}', [LectionControllers::class, "skripsi_file_update"])->name('skripsi.file.update');
     Route::delete('skripsi/file/delete/{id}', [LectionControllers::class, "skripsi_file_delete"])->name('skripsi.file.delete');
 
-    // Lection/Kerja Praktek Route
+    // Lection
+    //Syarat Kerja Praktek Route
     Route::get('/internship/requisite/index', [LectionControllers::class, "internship_requisite_index"])->name('internship.requisite.index');
     Route::get('/internship/requisite/create', [LectionControllers::class, "internship_requisite_create"])->name('internship.requisite.create');
     Route::post('/internship/requisite/store', [LectionControllers::class, "internship_requisite_store"])->name('internship.requisite.store');
     Route::get('/internship/requisite/edit/{code}', [LectionControllers::class, "internship_requisite_edit"])->name('internship.requisite.edit');
     Route::put('/internship/requisite/update/{code}', [LectionControllers::class, "internship_requisite_update"])->name('internship.requisite.update');
     Route::delete('/internship/requisite/delete/{code}', [LectionControllers::class, "internship_requisite_delete"])->name('internship.requisite.delete');
+
+    // Panduan Kerja Praktek Route
+    Route::get('/internship/guide/index', [LectionControllers::class, "internship_guide_index"])->name('internship.guide.index');
+    Route::get('/internship/guide/create', [LectionControllers::class, "internship_guide_create"])->name('internship.guide.create');
+    Route::post('/internship/guide/store', [LectionControllers::class, "internship_guide_store"])->name('internship.guide.store');
+    Route::get('/internship/guide/edit/{code}', [LectionControllers::class, "internship_guide_edit"])->name('internship.guide.edit');
+    Route::put('/internship/guide/update/{code}', [LectionControllers::class, "internship_guide_update"])->name('internship.guide.update');
+    Route::delete('/internship/guide/delete/{code}', [LectionControllers::class, "internship_guide_delete"])->name('internship.guide.delete');
 
     // Students Route
     Route::get('/student/index', [StudentsController::class, "index"])->name('student.index');

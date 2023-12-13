@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InternshipGuide;
 use App\Models\InternshipRequisite;
 use App\Models\kerjaPraktek_File;
 use App\Models\Skripsi_File;
@@ -466,7 +467,7 @@ class LectionControllers extends Controller
     //     return redirect()->route('admin.skripsi.index')->with('success', 'Data File Skripsi berhasil dihapus');
     // }
 
-    //Lection/Kerja Praktek Controller
+    //Lection/Kerja Praktek Syarat Controller
     public function internship_requisite_index(Request $request)
     {
         $data = new InternshipRequisite;
@@ -550,5 +551,91 @@ class LectionControllers extends Controller
         InternshipRequisite::where('code', $code)->delete();
 
         return redirect()->route('admin.internship.requisite.index')->with('success', 'Data Syarat Kerja Praktek berhasil dihapus');
+    }
+
+    //Lection/Kerja Praktek/Panduan Controller
+    public function internship_guide_index(Request $request)
+    {
+        $data = new InternshipGuide;
+
+        if ($request->get('search')) {
+            $data = $data->where('title', 'LIKE', '%' . $request->get('search') . '%')
+                ->orWhere('desc', 'LIKE', '%' . $request->get('search') . '%');
+        }
+
+        $data = $data->get();
+
+        return view('page.internship.guide.index', compact('data', 'request'));
+    }
+
+    public function internship_guide_create()
+    {
+        return view('page.internship.guide.create');
+    }
+
+    public function internship_guide_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'required|min:3|max:255',
+            'desc' => 'required|min:3|max:255',
+            'file' => 'required|min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['file'] = $request->input('file');
+
+        InternshipGuide::create($data);
+
+        return redirect()->route('admin.internship.guide.index')->with('success', 'Panduan Kerja Praktek baru berhasil ditambahkan');
+    }
+
+    public function internship_guide_edit($code)
+    {
+        $data = InternshipGuide::where('code', $code)->first();
+
+        return view('page.internship.guide.edit', compact('data'));
+    }
+
+    public function internship_guide_update(Request $request, $code)
+    {
+        $validator = Validator::make($request->all(), [
+            'code' => 'required',
+            'title' => 'min:3|max:255',
+            'desc' => 'min:3|max:255',
+            'file' => 'min:3|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $data['code'] = $request->input('code');
+        $data['title'] = $request->input('title');
+        $data['desc'] = $request->input('desc');
+        $data['file'] = $request->input('file');
+
+        InternshipGuide::where('code', $code)->update($data);
+
+        return redirect()->route('admin.internship.guide.index')->with('success', 'Data Panduan Kerja Praktek berhasil diubah');
+    }
+
+    public function internship_guide_delete($code)
+    {
+        InternshipGuide::where('code', $code)->delete();
+
+        return redirect()->route('admin.internship.guide.index')->with('success', 'Data Panduan Kerja Praktek berhasil dihapus');
     }
 }

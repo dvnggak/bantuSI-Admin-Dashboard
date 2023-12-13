@@ -133,7 +133,13 @@
                                         <li class="nav-item">
                                             <a href="{{route('admin.internship.requisite.index')}}" class="nav-link">
                                                 <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Syarat Kerja Praktek</p>
+                                                <p>Syarat</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{route('admin.internship.guide.index')}}" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Panduan</p>
                                             </a>
                                         </li>
                                     </ul>

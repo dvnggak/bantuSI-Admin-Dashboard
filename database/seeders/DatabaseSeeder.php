@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(PaymentScheduleSeeder::class);
         // $this->call(MajoringProfileSeeder::class);
         // $this->call(LecturersSeeder::class);
-        $this->call(InternshipRequisiteSeeder::class);
+        // $this->call(InternshipRequisiteSeeder::class);
+        $this->call(InternshipGuideSeeder::class);
     }
 }
