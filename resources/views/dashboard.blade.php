@@ -18,6 +18,9 @@
     <section class="content">
         <div class="container-fluid">
             <!-- INI UNTUK LOGO BANTU SI -->
+            <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                <img src="{{asset('storage/bantuSI.png')}}" alt="" style="width: 50%; height: auto;">
+            </div>
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

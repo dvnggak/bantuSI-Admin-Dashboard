@@ -52,12 +52,9 @@
                     @enderror
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
+                            <p class="mb-0">
+                                <a href="{{route('register')}}" class="text-center">Register admin</a>
+                            </p>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
@@ -66,13 +63,6 @@
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
-                </p>
-                <p class="mb-0">
-                    <a href="{{route('register')}}" class="text-center">Register admin</a>
-                </p>
             </div>
             <!-- /.card-body -->
         </div>

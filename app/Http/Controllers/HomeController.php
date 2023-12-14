@@ -15,96 +15,96 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public function index(Request $request)
-    {
+    // public function index(Request $request)
+    // {
 
-        $data = new User;
+    //     $data = new User;
 
-        if ($request->get('search')) {
-            $data = $data->where('name', 'LIKE', '%' . $request->get('search') . '%')
-                ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%');
-        }
+    //     if ($request->get('search')) {
+    //         $data = $data->where('name', 'LIKE', '%' . $request->get('search') . '%')
+    //             ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%');
+    //     }
 
-        $data = $data->get();
+    //     $data = $data->get();
 
-        return view('index', compact('data', 'request'));
-    }
+    //     return view('index', compact('data', 'request'));
+    // }
 
-    public function create()
-    {
-        return view('create');
-    }
+    // public function create()
+    // {
+    //     return view('create');
+    // }
 
-    public function edit(Request $request, $id)
-    {
-        $data = User::find($id);
+    // public function edit(Request $request, $id)
+    // {
+    //     $data = User::find($id);
 
-        return view('edit', compact('data'));
-    }
+    //     return view('edit', compact('data'));
+    // }
 
-    public function update(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email|unique:users,email,' . $request->id,
-            'password' => 'nullable',
-        ]);
+    // public function update(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required|min:3|max:255',
+    //         'email' => 'required|email|unique:users,email,' . $request->id,
+    //         'password' => 'nullable',
+    //     ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+    //     if ($validator->fails()) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
 
-        $data['name'] = $request->name;
-        $data['email'] = $request->email;
-        if ($request->password) {
-            $data['password'] = \bcrypt($request->password);
-        }
+    //     $data['name'] = $request->name;
+    //     $data['email'] = $request->email;
+    //     if ($request->password) {
+    //         $data['password'] = \bcrypt($request->password);
+    //     }
 
-        User::where('id', $request->id)->update($data);
+    //     User::where('id', $request->id)->update($data);
 
-        return redirect()->route('admin.index');
-    }
+    //     return redirect()->route('admin.index');
+    // }
 
-    public function delete(Request $request, $id)
-    {
-        User::where('id', $id)->delete();
+    // public function delete(Request $request, $id)
+    // {
+    //     User::where('id', $id)->delete();
 
-        return redirect()->route('admin.index');
-    }
+    //     return redirect()->route('admin.index');
+    // }
 
-    public function store(Request $request)
-    {
+    // public function store(Request $request)
+    // {
 
-        $validator = Validator::make($request->all(), [
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|min:3|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|max:255',
-        ]);
+    //     $validator = Validator::make($request->all(), [
+    //         'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    //         'name' => 'required|min:3|max:255',
+    //         'email' => 'required|email|unique:users,email',
+    //         'password' => 'required|min:8|max:255',
+    //     ]);
 
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+    //     if ($validator->fails()) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
 
-        $image = $request->file('image');
-        $fileName = date('Y-m-d') . $image->getClientOriginalName();
-        $path = 'image-user/' . $fileName;
+    //     $image = $request->file('image');
+    //     $fileName = date('Y-m-d') . $image->getClientOriginalName();
+    //     $path = 'image-user/' . $fileName;
 
-        Storage::disk('public')->put($path, file_get_contents($image));
+    //     Storage::disk('public')->put($path, file_get_contents($image));
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'image' => $fileName,
-            'password' => \bcrypt($request->password),
-        ]);
+    //     User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'image' => $fileName,
+    //         'password' => \bcrypt($request->password),
+    //     ]);
 
-        return redirect()->route('admin.index');
-    }
+    //     return redirect()->route('admin.index');
+    // }
 }
