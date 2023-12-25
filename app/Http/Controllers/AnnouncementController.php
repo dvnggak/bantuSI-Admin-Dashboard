@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewPengumumanAdded;
 use App\Models\Announcements;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -45,15 +46,19 @@ class AnnouncementController extends Controller
                 ->withInput();
         }
 
-        $data['code'] = $request->input('code');
-        $data['title'] = $request->input('title');
-        $data['date'] = $request->input('date');
-        $data['category'] = $request->input('category');
-        $data['publisher'] = $request->input('publisher');
-        $data['desc'] = $request->input('desc');
-        $data['link'] = $request->input('link');
+        // Create a new announcement
+        $announcement = Announcements::create([
+            'code' => $request->input('code'),
+            'title' => $request->input('title'),
+            'date' => $request->input('date'),
+            'category' => $request->input('category'),
+            'publisher' => $request->input('publisher'),
+            'desc' => $request->input('desc'),
+            'link' => $request->input('link'),
+        ]);
 
-        Announcements::create($data);
+        // Dispatch the event with the announcement instance
+        event(new NewPengumumanAdded($announcement));
 
         return redirect()->route('admin.announcement.index')->with('success', 'Data berhasil ditambahkan');
     }
